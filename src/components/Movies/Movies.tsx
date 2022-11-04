@@ -4,7 +4,7 @@ import './movies.scss';
 import SearchIcon from '../../assets/images/search.svg';
 import MovieCard from '../MovieCard/MovieCard';
 
-const API_URL = 'http://www.omdbapi.com?apikey=82587c0e';
+const API_URL = 'https://www.omdbapi.com?apikey=82587c0e';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -17,13 +17,13 @@ const Movies = () => {
   };
 
   useEffect(() => {
-    searchMovies('Captain');
+    searchMovies(search);
   }, []);
 
   return (
     <div className="movies">
       <h1 className="movies__title">MovieLand</h1>
-      <form onSubmit={(e) => e.preventDefault()} className="search">
+      <form onSubmit={(e) => { e.preventDefault(); }} className="search">
         <input
           className="search__input"
           type="text"
@@ -36,7 +36,7 @@ const Movies = () => {
         </button>
       </form>
       {
-        movies.length > 0 ? (
+        movies !== undefined ? (
           <div className="container">
             {
               movies.map(({
